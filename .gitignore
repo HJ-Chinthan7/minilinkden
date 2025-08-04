@@ -2,11 +2,9 @@
 /node_modules
 /.env
 /frontend
-/backend/routes/auth.js
 /backend/routes/posts.js     
 /backend/routes/users.js
 /backend/models/Post.js
-/backend/controllers/authController.js
 /backend/controllers/postController.js
 /backend/controllers/userController.js  
 /backend/routes/posts.js
