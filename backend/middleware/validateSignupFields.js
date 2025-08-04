@@ -18,7 +18,7 @@ const validateSignupFields = async (req, res, next) => {
       throw new Error('Password must be at least 6 characters long' );
     }
     
-    // Password strength validation
+    
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{6,}$/;
     if (!passwordRegex.test(password)) {
       throw new Error('Password must contain at least one uppercase letter, one lowercase letter, and one number' );

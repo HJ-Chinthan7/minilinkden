@@ -10,14 +10,14 @@ function PostList({ posts, onPostUpdate }) {
       alert('Please login to like posts');
       return;
     }
-
+  
     try {
       const response = await fetch(`http://localhost:5000/api/posts/${postId}/like`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ userId: user._id })
+        body: JSON.stringify({ userId: user.id })
       });
 
       const data = await response.json();
@@ -83,16 +83,6 @@ function PostList({ posts, onPostUpdate }) {
           
           <div className="post-content">
             <p>{post.content}</p>
-            {post.image && (
-              <img 
-                src={post.image} 
-                alt="Post content" 
-                className="post-image"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
-              />
-            )}
           </div>
           
           <div className="post-actions">
@@ -102,10 +92,10 @@ function PostList({ posts, onPostUpdate }) {
               disabled={!user}
             >
               <span className="heart-icon">❤️</span>
-              <span className="like-count">{post.likes?.length || 0}</span>
+              <span className="like-count">{post?.likes?.length || 0}</span>
             </button>
             <span className="comment-count">
-              💬 {post.comments?.length || 0} comments
+              💬 0 comments
             </span>
           </div>
         </div>

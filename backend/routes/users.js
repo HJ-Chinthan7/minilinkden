@@ -3,7 +3,7 @@ const User = require('../models/User');
 const Post = require('../models/Post');
 const router = express.Router();
 
-// GET /api/users/:id - Get user by ID
+
 router.get('/:id', async (req, res) => {
   try {
     const user = await User.findById(req.params.id).select('-password');
@@ -17,7 +17,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// GET /api/users/:id/posts - Get posts by user ID
+
 router.get('/:id/posts', async (req, res) => {
   try {
     const posts = await Post.find({ author: req.params.id })

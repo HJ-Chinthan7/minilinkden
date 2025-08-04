@@ -61,7 +61,7 @@ console.log(currentUser);
       <div className="profile-header">
         <div className="profile-avatar-section">
           <img 
-            src={profile.avatar || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnFRPx77U9mERU_T1zyHcz9BOxbDQrL4Dvtg&s"} 
+            src={ "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnFRPx77U9mERU_T1zyHcz9BOxbDQrL4Dvtg&s"} 
             alt={profile.firstName } 
             className="profile-avatar"
           />
@@ -76,11 +76,11 @@ console.log(currentUser);
               <span className="stat-label">Posts</span>
             </div>
             <div className="stat">
-              <span className="stat-number">{profile.followersCount || 0}</span>
+              <span className="stat-number">{ 0}</span>
               <span className="stat-label">Followers</span>
             </div>
             <div className="stat">
-              <span className="stat-number">{profile.followingCount || 0}</span>
+              <span className="stat-number">{ 0}</span>
               <span className="stat-label">Following</span>
             </div>
           </div>
@@ -116,7 +116,6 @@ console.log(currentUser);
               <div key={post.id} className="post-card">
                 <div className="post-content">
                   <p>{post.content}</p>
-                  {post.image && <img src={post.image} alt="Post" className="post-image" />}
                 </div>
                 <div className="post-meta">
                   <span className="post-date">

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import  AuthContext  from '../context/AuthContext';
 import PostForm from '../components/PostForm';
 import PostList from '../components/PostList';
@@ -6,7 +6,7 @@ import '../styles/Home.css';
 
 function Home() {
   const { user } = useContext(AuthContext);
-  const [newPost, setNewPost] = useState(null);
+
 
   return (
     <div className="home-container">
@@ -33,17 +33,6 @@ function Home() {
             <p>Share your thoughts, connect with professionals, and build meaningful relationships.</p>
           </div>
 
-          {user && (
-            <div className="post-section">
-              <h3>Share Your Thoughts</h3>
-              <PostForm onPost={post => setNewPost(post)} />
-            </div>
-          )}
-
-          <div className="posts-section">
-            <h3>Recent Posts</h3>
-            {user && <PostList newPost={newPost} />}
-          </div>
         </div>
       </section>
 

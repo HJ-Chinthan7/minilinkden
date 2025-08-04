@@ -3,7 +3,6 @@ const Post = require('../models/Post');
 const router = express.Router();
 
 
-// Get all posts with pagination
 router.get('/', async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
@@ -38,13 +37,12 @@ router.get('/', async (req, res) => {
 });
 
 
-// Create a new post
+
 router.post('/', async (req, res) => {
   try {
     const { content, image, author } = req.body;
-    console.log(req.body);
+   
 
-    // Validate required fields
     if (!content || !content.trim()) {
       return res.status(400).json({ error: 'Content is required' });
     }
@@ -60,7 +58,7 @@ router.post('/', async (req, res) => {
 
     await post.save();
     
-    // Populate author details
+ 
     await post.populate('author', 'firstName lastName email');
     
     res.status(201).json({
@@ -85,36 +83,12 @@ router.post('/', async (req, res) => {
 });
 
 
-// Get single post by ID
-router.get('/:id', async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id)
-      .populate('author', 'firstName lastName email');
-    
-    if (!post) {
-      return res.status(404).json({ 
-        success: false,
-        error: 'Post not found' 
-      });
-    }
-    
-    res.json({
-      success: true,
-      data: post
-    });
-  } catch (err) {
-    res.status(500).json({ 
-      success: false,
-      error: 'Server error',
-      message: err.message 
-    });
-  }
-});
 
-// Like a post
+
 router.post('/:id/like', async (req, res) => {
   try {
     const { userId } = req.body;
+  
     const post = await Post.findById(req.params.id);
     
     if (!post) {
@@ -125,7 +99,7 @@ router.post('/:id/like', async (req, res) => {
     }
     
     const isLiked = post.likes.includes(userId);
-    
+   
     if (isLiked) {
       post.likes.pull(userId);
     } else {

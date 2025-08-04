@@ -4,7 +4,6 @@ import '../styles/PostForm.css';
 
 function PostForm({ onPost }) {
   const [content, setContent] = useState('');
-  const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { user } = useContext(AuthContext);
@@ -32,7 +31,6 @@ function PostForm({ onPost }) {
         },
         body: JSON.stringify({
           content: content.trim(),
-          image: image.trim() || undefined,
           author: user.id
         })
       });
@@ -42,7 +40,6 @@ function PostForm({ onPost }) {
       if (response.ok && data.success) {
         onPost(data.data);
         setContent('');
-        setImage('');
       } else {
         throw new Error(data.error || 'Failed to create post');
       }
@@ -96,13 +93,7 @@ function PostForm({ onPost }) {
         rows={3}
       />
       
-      <input
-        type="url"
-        value={image}
-        onChange={(e) => setImage(e.target.value)}
-        placeholder="Image URL (optional)"
-        className="image-input"
-      />
+      
       
       {error && <div className="error-message">{error}</div>}
       
