@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import  AuthContext  from '../context/AuthContext';
-import PostForm from '../components/PostForm';
-import PostList from '../components/PostList';
+import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 
 function Home() {
@@ -19,8 +18,10 @@ function Home() {
           </p>
           {!user && (
             <div className="hero-cta">
-              <a href="/register" className="cta-button primary">Get Started</a>
-              <a href="/login" className="cta-button secondary">Sign In</a>
+             
+              <Link to="/register" className="cta-button secondary">Get Started</Link>
+               <Link to="/login" className="cta-button primary">Sign In</Link>
+              
             </div>
           )}
         </div>

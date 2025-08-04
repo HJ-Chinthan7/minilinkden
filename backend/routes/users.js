@@ -10,7 +10,7 @@ router.get('/:id', async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-    console.log(user);
+
     res.json({ user });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -23,7 +23,7 @@ router.get('/:id/posts', async (req, res) => {
     const posts = await Post.find({ author: req.params.id })
       .populate('author', 'name username avatar')
       .sort({ createdAt: -1 });
-      console.log(posts);
+      
     res.json({ posts });
   } catch (err) {
     res.status(500).json({ message: err.message });

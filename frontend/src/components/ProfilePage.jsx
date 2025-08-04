@@ -88,16 +88,6 @@ console.log(currentUser);
           <div className="profile-details">
             <h2 className="profile-name">{profile.firstName} {profile.lastName}</h2>
             {profile.bio && <p className="profile-bio">{profile.bio}</p>}
-            {profile.location && (
-              <p className="profile-location">
-                <span className="icon">📍</span> {profile.location}
-              </p>
-            )}
-            {profile.website && (
-              <a href={profile.website} target="_blank" rel="noopener noreferrer" className="profile-website">
-                {profile.website}
-              </a>
-            )}
             <p className="profile-joined">
               Joined {new Date(profile.createdAt).toLocaleDateString('en-US', { 
                 month: 'long', 
