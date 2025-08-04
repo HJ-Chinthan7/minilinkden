@@ -9,6 +9,13 @@ const signup=async (req,res)=>{
         const user = new User({ firstName,lastName, email, password: hashedPassword, bio, gender });
 
         await user.save();
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 1 * 24 * 60 * 60 * 1000, 
+      sameSite: 'Strict'
+    });
         res.status(201).json({
           'message': 'User registered successfully',
           "user": {
@@ -29,17 +36,26 @@ const signup=async (req,res)=>{
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
-    if (!user) return res.status(404).json({ error: 'User not found' });
+    if(email === '' || password === '') {
+     throw new Error("fields are empty")
+    }
+    const user=await User.findOne({ email });
+    if (!user) {
+      throw new Error( 'User not found' ); 
+    }
     
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ error: 'Invalid credentials' });
-    
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
+     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 1 * 24 * 60 * 60 * 1000, 
+      sameSite: 'Strict'
+    });
     
     res.json({ 
       message: 'Login successful',
-      token, 
       user: {
         id: user._id,
         firstName: user.firstName,
@@ -49,9 +65,22 @@ const login = async (req, res) => {
         gender: user.gender
       }
     });
+    
+
   } catch (err) {
     res.status(500).json({ error: err.message });
 }
 };
 
-module.exports = { signup, login };
+const logout=(req,res)=>{
+  try{
+    res.clearCookie('token');
+    res.status(200).json({ message: 'Logout successful' });
+  }catch(err){
+    console.log('Logout error:', err);
+    res.status(500).json({ error: err.message });
+  }
+
+}
+
+module.exports = { signup, login,logout };
