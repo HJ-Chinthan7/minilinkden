@@ -11,7 +11,7 @@ app.use(cors({
   origin: 'https://magical-melomakarona-51c068.netlify.app',
   credentials: true
 }));
-app.options('*', cors());
+
 
 app.use(express.json());
 
