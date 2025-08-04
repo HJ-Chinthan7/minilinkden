@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import AuthContext from '../context/AuthContext';
 import PostList from '../components/PostList';
 import PostForm from '../components/PostForm';
 import '../styles/PublicFeed.css';
@@ -19,13 +19,13 @@ function PublicFeed() {
       const response = await fetch('http://localhost:5000/api/posts');
       const data = await response.json();
       
-      if (response.ok) {
-        setPosts(data.posts || data);
+      if (response.ok && data.success) {
+        setPosts(data.data || []);
       } else {
         setError('Failed to load posts');
       }
-    } catch (err) {
-      setError('Network error. Please try again.'+err);
+    } catch (error) {
+      setError('Network error. Please try again.'+error);
     } finally {
       setLoading(false);
     }
@@ -65,21 +65,20 @@ function PublicFeed() {
         <p>Discover posts from our community</p>
       </div>
 
-          {user && (
-            <div className="create-post-section">
-              <h2>Create a Post</h2>
-              <PostForm user={user.name} onPost={handleNewPost} />
-            </div>
-          )}
+      {user && (
+        <div className="create-post-section">
+          <h2>Create a Post</h2>
+          <PostForm onPost={handleNewPost} />
+        </div>
+      )}
 
-          <div className="posts-section">
-            <h2>Recent Posts</h2>
-            <PostList 
-              posts={posts} 
-              onPostUpdate={fetchPosts} 
-              user={user} 
-            />
-          </div>
+      <div className="posts-section">
+        <h2>Recent Posts</h2>
+        <PostList 
+          posts={posts} 
+          onPostUpdate={fetchPosts} 
+        />
+      </div>
     </div>
   );
 }

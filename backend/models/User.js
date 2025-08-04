@@ -26,4 +26,4 @@ const userSchema = new mongoose.Schema({
     default: 'This is a demo account bio'
   }
 },{timestamps:true});
-module.exports = mongoose.model('Newuser', userSchema);
+module.exports = mongoose.model('User', userSchema);
