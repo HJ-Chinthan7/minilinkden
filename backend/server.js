@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 
 const connectDB  = require('./utils/db');
 
+const app = express();
+dotenv.config();
 app.use(cors({
   origin: 'https://magical-melomakarona-51c068.netlify.app', 
   credentials: true
@@ -13,10 +15,7 @@ const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/posts');
 const userRoutes = require('./routes/users');
 
-const app = express();
-dotenv.config();
 
-app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
