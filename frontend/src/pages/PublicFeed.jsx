@@ -16,7 +16,7 @@ function PublicFeed() {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/posts');
+      const response = await fetch(`${import.meta.env.VITE_APP_API_BASE_URL}/api/posts`);
       const data = await response.json();
       
       if (response.ok && data.success) {

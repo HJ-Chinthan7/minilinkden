@@ -18,7 +18,8 @@ console.log(currentUser);
 
   const fetchProfile = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/users/${currentUser.id}`);
+      const response = await fetch(`${import.meta.env.VITE_APP_API_BASE_URL}/api/users/${currentUser.id}`
+);
       const data = await response.json();
       setProfile(data.user);
     } catch (error) {
@@ -30,7 +31,8 @@ console.log(currentUser);
 
   const fetchUserPosts = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/users/${currentUser.id}/posts`);
+      const response = await fetch(`${import.meta.env.VITE_APP_API_BASE_URL}/api/users/${currentUser.id}/posts`
+);
       const data = await response.json();
       setPosts(data.posts || []);
     } catch (error) {
