@@ -21,7 +21,6 @@ console.log(currentUser);
       const response = await fetch(`http://localhost:5000/api/users/${currentUser.id}`);
       const data = await response.json();
       setProfile(data.user);
-    
     } catch (error) {
       console.error('Error loading profile:', error);
     } finally {
@@ -38,8 +37,6 @@ console.log(currentUser);
       console.error('Error loading posts:', error);
     }
   };
-console.log(posts);
-console.log(profile);
   if (loading) {
     return (
       <div className="profile-container">

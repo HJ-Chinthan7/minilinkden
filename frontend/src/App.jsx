@@ -5,9 +5,9 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Profile from './components/Profile';
 import './styles/App.css';
 import PublicFeed from './pages/PublicFeed';
+import ProfilePage from './components/ProfilePage';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/public-feed" element={<PublicFeed/>} />
-            <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/profile/:id" element={<ProfilePage />} />
           </Routes>
         </main>
       </div>
