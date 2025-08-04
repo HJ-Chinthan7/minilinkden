@@ -4,7 +4,11 @@ const dotenv = require('dotenv');
 
 const connectDB  = require('./utils/db');
 
-const cors = require('cors');
+app.use(cors({
+  origin: 'https://magical-melomakarona-51c068.netlify.app', 
+  credentials: true
+}));
+app.options('*', cors());
 const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/posts');
 const userRoutes = require('./routes/users');
