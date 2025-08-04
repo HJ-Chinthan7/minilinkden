@@ -1,4 +1,4 @@
-/* Basic App styling */
+*/
 .app-container {
   min-height: 100vh;
   display: flex;
@@ -13,7 +13,7 @@
   width: 100%;
 }
 
-/* Global styles */
+
 * {
   box-sizing: border-box;
 }
@@ -28,7 +28,7 @@ body {
   background-color: #f5f5f5;
 }
 
-/* Responsive design */
+
 @media (max-width: 768px) {
   .main-content {
     padding: 10px;

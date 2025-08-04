@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import '../styles/Register.css';
 
 const Register = () => {
+  const navigate = useNavigate();
+  const { register } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -20,7 +24,7 @@ const Register = () => {
       ...prev,
       [name]: value
     }));
-    // Clear error when user starts typing
+ 
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -86,21 +90,13 @@ const Register = () => {
       const data = await response.json();
       
       if (response.ok) {
-        alert('Registration successful!');
-        // Reset form
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          password: '',
-          gender: '',
-          bio: ''
-        });
+        register(data.user);
+        navigate('/public-feed');
       } else {
         setErrors({ submit: data.error || 'Registration failed' });
       }
-    } catch (error) {
-      setErrors({ submit: 'Network error. Please try again.' });
+    } catch (err) {
+      setErrors({ submit: 'Network error. Please try again.' + err });
     } finally {
       setLoading(false);
     }

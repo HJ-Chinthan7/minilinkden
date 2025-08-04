@@ -1,12 +1,10 @@
-/* Home Page Styles - Modern & Professional */
-
 .home-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   overflow-x: hidden;
 }
 
-/* Hero Section */
+
 .hero-section {
   min-height: 70vh;
   display: flex;
@@ -79,7 +77,7 @@
   transform: translateY(-2px);
 }
 
-/* Main Content Section */
+
 .main-content-section {
   padding: 80px 20px;
   background: white;
@@ -109,7 +107,7 @@
   line-height: 1.6;
 }
 
-/* Post Section */
+
 .post-section {
   background: #f8f9fa;
   padding: 40px;
@@ -135,7 +133,7 @@
   text-align: center;
 }
 
-/* Features Section */
+
 .features-section {
   padding: 80px 20px;
   background: #f8f9fa;
@@ -189,7 +187,6 @@
   line-height: 1.6;
 }
 
-/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -201,7 +198,6 @@
   }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2.5rem;

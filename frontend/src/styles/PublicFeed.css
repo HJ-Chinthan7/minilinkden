@@ -1,0 +1,109 @@
+.feed-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #14171a;
+}
+
+.feed-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.feed-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+.feed-header p {
+  font-size: 1.1rem;
+  color: #657786;
+}
+
+.create-post-section {
+  margin-bottom: 40px;
+}
+
+.create-post-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #1a1a1a;
+}
+
+.posts-section {
+  margin-bottom: 40px;
+}
+
+.posts-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: #657786;
+  font-size: 1.2rem;
+}
+
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #667eea;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  text-align: center;
+  color: #e0245e;
+  padding: 40px 20px;
+}
+
+.error-message h3 {
+  margin-bottom: 10px;
+}
+
+.retry-btn {
+  background-color: #667eea;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.retry-btn:hover {
+  background-color: #764ba2;
+}
+
+@media (max-width: 768px) {
+  .feed-container {
+    margin: 20px 10px;
+    padding: 0 10px;
+  }
+
+  .feed-header h1 {
+    font-size: 2rem;
+  }
+
+  .create-post-section h2,
+  .posts-section h2 {
+    font-size: 1.5rem;
+  }
+}

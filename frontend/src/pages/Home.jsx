@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 import PostForm from '../components/PostForm';
 import PostList from '../components/PostList';
 import '../styles/Home.css';
 
 function Home() {
-  const [user] = useState(JSON.parse(localStorage.getItem("user")));
+  const { user } = useContext(AuthContext);
   const [newPost, setNewPost] = useState(null);
 
   return (
     <div className="home-container">
-      {/* Hero Section */}
+     
       <section className="hero-section">
         <div className="hero-content">
           <h1 className="hero-title">Welcome to MiniLinkden</h1>
@@ -25,7 +26,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Main Content */}
       <section className="main-content-section">
         <div className="content-wrapper">
           <div className="welcome-section">
@@ -36,18 +36,17 @@ function Home() {
           {user && (
             <div className="post-section">
               <h3>Share Your Thoughts</h3>
-              <PostForm user={user.name} onPost={post => setNewPost(post)} />
+              <PostForm onPost={post => setNewPost(post)} />
             </div>
           )}
 
           <div className="posts-section">
             <h3>Recent Posts</h3>
-            <PostList newPost={newPost} />
+            {user && <PostList newPost={newPost} />}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="features-section">
         <div className="features-container">
           <h2>Why Choose MiniLinkden?</h2>
