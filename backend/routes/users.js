@@ -1,0 +1,33 @@
+const express = require('express');
+const User = require('../models/User');
+const Post = require('../models/Post');
+const router = express.Router();
+
+// GET /api/users/:id - Get user by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select('-password');
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    console.log(user);
+    res.json({ user });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// GET /api/users/:id/posts - Get posts by user ID
+router.get('/:id/posts', async (req, res) => {
+  try {
+    const posts = await Post.find({ author: req.params.id })
+      .populate('author', 'name username avatar')
+      .sort({ createdAt: -1 });
+      console.log(posts);
+    res.json({ posts });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+module.exports = router;
